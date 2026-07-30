@@ -148,10 +148,10 @@ const AdminProducts = () => {
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list')
 
   const [showForm, setShowForm] = useState(false)
-  //const [showAddCategory, setShowAddCategory] = useState(false)
+  const [, setShowAddCategory] = useState(false)
   const [newCategoryName, setNewCategoryName] = useState('')
   const [deleteId, setDeleteId] = useState<number | null>(null)
-  //const [deletingCategoryId, setDeletingCategoryId] = useState<number | null>(null)
+  const [,setDeletingCategoryId] = useState<number | null>(null)
   const [selected, setSelected] = useState<number[]>([])
 
   const [form, setForm] = useState({ ...emptyForm })
