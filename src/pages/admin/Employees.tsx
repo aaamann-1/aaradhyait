@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Bell, User, Plus, Trash2, Pencil, Loader2, CheckCircle, XCircle, X, Camera, Users } from 'lucide-react'
+import { Plus, Trash2, Pencil, Loader2, CheckCircle, XCircle, X, Camera, Users } from 'lucide-react'
 import {
   getAllEmployeesAdmin,
   createEmployeeAdmin,

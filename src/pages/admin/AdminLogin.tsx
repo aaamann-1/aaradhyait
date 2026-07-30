@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Eye, EyeOff, Lock, User, ArrowRight } from 'lucide-react'
+import { Eye, Lock, User, ArrowRight } from 'lucide-react'
 import { loginAdmin } from '../../services/admin/authService'
 
 const AdminLogin = () => {
