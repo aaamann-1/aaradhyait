@@ -33,7 +33,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <BrowserRouter basename="/AaradhyaItSolutions">
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         {/* Public Routes */}
