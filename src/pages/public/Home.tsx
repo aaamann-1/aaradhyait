@@ -216,8 +216,8 @@ const Home = () => {
         <div className="mt-24 border-t border-blue-800/60 bg-blue-900/40 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <StatCard value={stats?.businessesServed ?? 500} label="Businesses Served" suffix="+" />
-              <StatCard value={stats?.yearsExperience ?? 10} label="Years Experience" suffix="+" />
+              <StatCard value={stats?.businessesServed ?? 2000} label="Businesses Served" suffix="+" />
+              <StatCard value={stats?.yearsExperience ?? 14} label="Years Experience" suffix="+" />
               <StatCard value={stats?.totalProducts ?? 9} label="Products" suffix="+" />
               <div className="text-center transform transition-transform duration-300 hover:scale-105">
                 <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-md">24/7</div>
