@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Search, Plus, Edit, Trash2, Package, X, Bell, User, LayoutGrid, List, Upload, FileText, PowerOff } from 'lucide-react'
+import { Search, Plus, Edit, Trash2, Package, X, LayoutGrid, List, Upload, FileText, PowerOff } from 'lucide-react'
 
 import {
   getProducts, addProduct, updateProduct,
@@ -354,10 +354,6 @@ const AdminProducts = () => {
           <h1 className="text-2xl font-bold text-gray-900">Products</h1>
         </div>
         <div className="flex items-center gap-3">
-          <button className="p-2 text-gray-400 hover:text-gray-600"><Bell size={20} /></button>
-          <div className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center">
-            <User size={16} className="text-gray-500" />
-          </div>
           <button
             onClick={() => { setEditingProduct(null); setForm({ ...emptyForm }); setShowForm(true) }}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl flex items-center gap-2"

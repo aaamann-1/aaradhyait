@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Bell, User, Save, Camera, Shield, Building2, BellRing, Settings2, ChevronRight, Loader2, CheckCircle, XCircle, Clock, Plus, Trash2 } from 'lucide-react'
+import {  User, Save, Camera, Shield, Building2, BellRing, Settings2, ChevronRight, Loader2, CheckCircle, XCircle, Clock, Plus, Trash2 } from 'lucide-react'
 
 type Tab = 'profile' | 'security' | 'company' | 'notifications' | 'system'
 
@@ -238,7 +238,6 @@ const AdminSettings = () => {
           <h1 className="text-2xl font-bold text-gray-900">Settings Dashboard</h1>
         </div>
         <div className="flex items-center gap-4">
-          <Bell size={22} className="text-gray-500 cursor-pointer hover:text-teal-600 transition-colors" />
           <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
             {profile.avatarPath ? (
               <img src={profile.avatarPath} alt="Avatar" className="w-full h-full object-cover" />
