@@ -104,7 +104,7 @@ const Contact = () => {
                     icon: <Phone size={20} className="text-blue-600" />,
                     label: 'Phone',
                     value: info.primaryPhone,
-                    sub: 'Mon–Sat, 9am–7pm',
+                    sub: 'Mon–Sat, 9am–6pm',
                     href: `tel:+${phoneDigits}`
                   },
                   {
