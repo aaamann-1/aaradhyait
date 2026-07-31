@@ -6,14 +6,15 @@ import {
 } from 'lucide-react'
 import { getDashboardData } from '../../services/admin/dashboardService'
 import { exportInquiriesCSV, exportProductsCSV } from '../../services/admin/reportsService'
-
+import { getNewInquiriesCount } from '../../services/admin/inquiriesService'
 const Dashboard = () => {
   const navigate = useNavigate()
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [exportOpen, setExportOpen] = useState(false)
+  const [newInquiriesCount, setNewInquiriesCount] = useState(0)
   const [exporting, setExporting] = useState<'inquiries' | 'products' | null>(null)
-  
+
   // Add state for adminName so it can update dynamically
   const [adminName, setAdminName] = useState(localStorage.getItem('adminName') || 'Admin')
 
@@ -33,7 +34,7 @@ const Dashboard = () => {
     const syncName = () => {
       setAdminName(localStorage.getItem('adminName') || 'Admin')
     }
-    
+
     window.addEventListener('storage', syncName)
     // Cleanup listener on unmount
     return () => window.removeEventListener('storage', syncName)
@@ -51,6 +52,20 @@ const Dashboard = () => {
       }
     }
     fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const count = await getNewInquiriesCount()
+        setNewInquiriesCount(count)
+      } catch (error) {
+        console.error('Failed to fetch new inquiries count:', error)
+      }
+    }
+    fetchCount()
+    const interval = setInterval(fetchCount, 30000) // poll every 30s
+    return () => clearInterval(interval)
   }, [])
 
   // Close export dropdown when clicking outside
@@ -94,11 +109,16 @@ const Dashboard = () => {
             <Calendar size={17} />
             {today}
           </div>
-          <div className="relative">
+          <div
+            className="relative cursor-pointer"
+            onClick={() => navigate('/admin/inquiries?filter=New')}
+          >
             <Bell size={22} className="text-gray-600" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-              {data?.stats?.totalInquiries || 0}
-            </span>
+            {newInquiriesCount > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                {newInquiriesCount}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -284,9 +304,8 @@ const Dashboard = () => {
                   <p className="text-xs text-gray-500 mt-0.5">{product.category}</p>
                 </div>
                 <div>
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full w-fit ${
-                    product.type === 'Hardware' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
-                  }`}>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full w-fit ${product.type === 'Hardware' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
+                    }`}>
                     {product.type?.toUpperCase()}
                   </span>
                 </div>
@@ -316,9 +335,8 @@ const Dashboard = () => {
                   <p className="text-sm font-semibold text-gray-900 truncate">{product.name}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{product.category}</p>
                 </div>
-                <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${
-                  product.type === 'Hardware' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
-                }`}>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${product.type === 'Hardware' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
+                  }`}>
                   {product.type?.toUpperCase()}
                 </span>
                 <div className="flex items-center gap-1 shrink-0 ml-1">

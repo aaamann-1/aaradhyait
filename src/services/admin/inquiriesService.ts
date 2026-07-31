@@ -9,6 +9,11 @@ export const getInquiries = async () => {
   return res.data.data;
 };
 
+export const getNewInquiriesCount = async (): Promise<number> => {
+  const res = await axios.get(`${API_URL}/api/admin/inquiries/new-count`, { headers: auth() });
+  return res.data.data.count;
+};
+
 export const updateInquiryStatus = async (id: number, status: string) => {
   const res = await axios.patch(
     `${API_URL}/api/admin/inquiries/${id}/status`,

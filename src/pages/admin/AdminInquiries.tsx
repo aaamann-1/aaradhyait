@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { MessageSquare, Search, Filter, CheckCircle, Trash2 } from 'lucide-react'
 import { getInquiries, updateInquiryStatus, deleteInquiry } from '../../services/admin/inquiriesService'
+import { useSearchParams } from 'react-router-dom'
 
 const tabs = ['All', 'New', 'Seen', 'Replied', 'Resolved']
 
@@ -20,7 +21,9 @@ const methodColors: Record<string, string> = {
 const AdminInquiries = () => {
   const [inquiries, setInquiries] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState('All')
+  const [searchParams] = useSearchParams()
+  const initialTab = tabs.includes(searchParams.get('filter') || '') ? searchParams.get('filter')! : 'All'
+  const [activeTab, setActiveTab] = useState(initialTab)
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<number | null>(null)
 
@@ -165,11 +168,10 @@ const AdminInquiries = () => {
           <button
             key={tab}
             onClick={() => { setActiveTab(tab); setSelected(null) }}
-            className={`shrink-0 px-4.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-              activeTab === tab
+            className={`shrink-0 px-4.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${activeTab === tab
                 ? 'bg-blue-600 text-white shadow-sm'
                 : 'bg-white border border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-600'
-            }`}
+              }`}
           >
             {tab}
             {tab === 'All' ? (
@@ -198,22 +200,21 @@ const AdminInquiries = () => {
               <div
                 key={inquiry.id}
                 onClick={() => handleSelect(inquiry.id)}
-                className={`bg-white rounded-2xl border shadow-sm p-5 cursor-pointer transition-all duration-200 hover:shadow-md ${
-                  selected === inquiry.id ? 'border-blue-400 ring-2 ring-blue-100' : 'border-gray-100'
-                }`}
+                className={`bg-white rounded-2xl border shadow-sm p-5 cursor-pointer transition-all duration-200 hover:shadow-md ${selected === inquiry.id ? 'border-blue-400 ring-2 ring-blue-100' : 'border-gray-100'
+                  }`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2.5">
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-gray-900 text-base truncate">{inquiry.product}</p>
-                   <p className="text-xs text-gray-500 mt-0.5 font-medium">
-  {inquiry.id} · {new Date(inquiry.time).toLocaleString('en-IN', { 
-    day: '2-digit', 
-    month: 'short', 
-    hour: '2-digit', 
-    minute: '2-digit', 
-    hour12: true 
-  })}
-</p>
+                    <p className="text-xs text-gray-500 mt-0.5 font-medium">
+                      {inquiry.id} · {new Date(inquiry.time).toLocaleString('en-IN', {
+                        day: '2-digit',
+                        month: 'short',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                      })}
+                    </p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className={`text-xs font-bold px-3 py-1 rounded-full ${methodColors[inquiry.method] || 'bg-gray-100'}`}>
