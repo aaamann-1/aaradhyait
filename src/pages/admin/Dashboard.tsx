@@ -203,68 +203,73 @@ const Dashboard = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-5">Quick Actions</h2>
-              <div className="space-y-3.5">
+          {/* Quick Actions */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col">
+            <h2 className="text-lg font-bold text-gray-900 mb-5">Quick Actions</h2>
 
-                {/* Add New Product */}
-                <Link
-                  to="/admin/products"
-                  className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition-colors text-sm"
-                >
+            <div className="flex-1 flex flex-col justify-center space-y-3">
+
+              {/* Add New Product */}
+              <Link
+                to="/admin/products"
+                className="group flex items-center gap-3.5 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-4 rounded-xl transition-colors text-sm"
+              >
+                <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/15 shrink-0">
                   <Plus size={18} />
-                  Add New Product
-                </Link>
+                </span>
+                Add New Product
+              </Link>
 
-                {/* Post Announcement */}
-                <button
-                  onClick={() => navigate('/admin/announcements')}
-                  className="flex items-center justify-center gap-2 w-full border-2 border-gray-200 hover:border-blue-300 hover:text-blue-600 text-gray-700 font-semibold py-3.5 rounded-xl transition-colors text-sm"
-                >
+              {/* Post Announcement */}
+              <button
+                onClick={() => navigate('/admin/announcements')}
+                className="group flex items-center gap-3.5 w-full border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 text-gray-700 hover:text-blue-600 font-semibold py-4 px-4 rounded-xl transition-colors text-sm"
+              >
+                <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 shrink-0 transition-colors">
                   <Megaphone size={18} />
-                  Post Announcement
+                </span>
+                Post Announcement
+              </button>
+
+              {/* Export Reports — dropdown */}
+              <div className="relative" onMouseDown={e => e.stopPropagation()}>
+                <button
+                  onClick={() => setExportOpen(o => !o)}
+                  disabled={exporting !== null}
+                  className="group flex items-center gap-3.5 w-full border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 text-gray-700 hover:text-blue-600 font-semibold py-4 px-4 rounded-xl transition-colors text-sm disabled:opacity-60"
+                >
+                  <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 shrink-0 transition-colors">
+                    {exporting ? <Loader2 size={18} className="animate-spin" /> : <Download size={18} />}
+                  </span>
+                  <span className="flex-1 text-left">
+                    {exporting ? `Exporting ${exporting}...` : 'Export Reports'}
+                  </span>
+                  {!exporting && <ChevronDown size={16} className={`transition-transform ${exportOpen ? 'rotate-180' : ''}`} />}
                 </button>
 
-                {/* Export Reports — dropdown */}
-                <div className="relative" onMouseDown={e => e.stopPropagation()}>
-                  <button
-                    onClick={() => setExportOpen(o => !o)}
-                    disabled={exporting !== null}
-                    className="flex items-center justify-center gap-2 w-full border-2 border-gray-200 hover:border-blue-300 hover:text-blue-600 text-gray-700 font-semibold py-3.5 rounded-xl transition-colors text-sm disabled:opacity-60"
-                  >
-                    {exporting ? (
-                      <Loader2 size={18} className="animate-spin" />
-                    ) : (
-                      <Download size={18} />
-                    )}
-                    {exporting ? `Exporting ${exporting}...` : 'Export Reports'}
-                    {!exporting && <ChevronDown size={16} className={`ml-auto transition-transform ${exportOpen ? 'rotate-180' : ''}`} />}
-                  </button>
-
-                  {exportOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-20">
-                      <button
-                        onClick={() => handleExport('inquiries')}
-                        className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors"
-                      >
-                        📋 Export Inquiries CSV
-                      </button>
-                      <button
-                        onClick={() => handleExport('products')}
-                        className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors border-t border-gray-100"
-                      >
-                        📦 Export Products CSV
-                      </button>
-                    </div>
-                  )}
-                </div>
+                {exportOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-20">
+                    <button
+                      onClick={() => handleExport('inquiries')}
+                      className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors"
+                    >
+                      📋 Export Inquiries CSV
+                    </button>
+                    <button
+                      onClick={() => handleExport('products')}
+                      className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors border-t border-gray-100"
+                    >
+                      📦 Export Products CSV
+                    </button>
+                  </div>
+                )}
               </div>
+
             </div>
           </div>
         </div>
 
-        {/* Recently Added Products */}
+        {/* Recently Added Produc .ts */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
             <h2 className="text-lg font-bold text-gray-900">Recently Added Products</h2>
