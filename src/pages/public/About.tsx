@@ -134,9 +134,9 @@ const About = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {stats ? (
               <>
-                <StatCard value={stats.businessesServed} label="Businesses Served" icon={<Users size={22} />} suffix="+" />
-                <StatCard value={stats.yearsExperience} label="Years Experience" icon={<Clock size={22} />} suffix="+" />
-                <StatCard value={stats.totalProducts} label="Products" icon={<Award size={22} />} suffix="+" />
+                <StatCard value={2000} label="Businesses Served" icon={<Users size={22} />} suffix="+" />
+                <StatCard value={14} label="Years Experience" icon={<Clock size={22} />} suffix="+" />
+                <StatCard value={8} label="Products" icon={<Award size={22} />} suffix="+" />
                 <div className="text-center p-4 rounded-2xl bg-gray-50 border border-gray-100/80 shadow-xs">
                   <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-xs">
                     <Shield size={22} />
@@ -148,8 +148,8 @@ const About = () => {
             ) : (
               <>
                 <StatCard value={2000} label="Businesses Served" icon={<Users size={22} />} suffix="+" />
-<StatCard value={14} label="Years Experience" icon={<Clock size={22} />} suffix="+" />
-<StatCard value={8} label="Products" icon={<Award size={22} />} suffix="+" />
+                <StatCard value={14} label="Years Experience" icon={<Clock size={22} />} suffix="+" />
+                <StatCard value={8} label="Products" icon={<Award size={22} />} suffix="+" />
                 <div className="text-center p-4 rounded-2xl bg-gray-50 border border-gray-100/80 shadow-xs">
                   <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-xs">
                     <Shield size={22} />
