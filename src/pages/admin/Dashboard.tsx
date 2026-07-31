@@ -259,18 +259,6 @@ const Dashboard = () => {
                     </div>
                   )}
                 </div>
-
-                {/* Support Log — placeholder for future */}
-                <button
-                  disabled
-                  title="Coming soon"
-                  className="flex items-center justify-center gap-2 w-full border-2 border-dashed border-gray-200 text-gray-400 font-semibold py-3.5 rounded-xl text-sm cursor-not-allowed"
-                >
-                  <HeadphonesIcon size={18} />
-                  Support Log
-                  <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full ml-1 font-medium">Soon</span>
-                </button>
-
               </div>
             </div>
           </div>
