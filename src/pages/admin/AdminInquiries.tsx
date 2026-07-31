@@ -205,7 +205,15 @@ const AdminInquiries = () => {
                 <div className="flex items-start justify-between gap-3 mb-2.5">
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-gray-900 text-base truncate">{inquiry.product}</p>
-                    <p className="text-xs text-gray-500 mt-0.5 font-medium">{inquiry.id} · {inquiry.time}</p>
+                   <p className="text-xs text-gray-500 mt-0.5 font-medium">
+  {inquiry.id} · {new Date(inquiry.time).toLocaleString('en-IN', { 
+    day: '2-digit', 
+    month: 'short', 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    hour12: true 
+  })}
+</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className={`text-xs font-bold px-3 py-1 rounded-full ${methodColors[inquiry.method] || 'bg-gray-100'}`}>
