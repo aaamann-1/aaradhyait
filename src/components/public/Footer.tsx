@@ -63,7 +63,7 @@ const Footer = () => {
   const primaryDigits = info.primaryPhone.replace(/[^\d]/g, '')
   const addressLine = [info.address1, info.address2].filter(Boolean).join(', ')
 
-  const mobilePhones = [info.primaryPhone, '9146192757'].filter(Boolean)
+  const mobilePhones = [info.primaryPhone, info.whatsapp].filter(Boolean)
   const supportPhones = [info.supportPhone1, info.supportPhone2, info.supportPhone3].filter(Boolean)
   const salesPhones = [info.salesPhone1, info.salesPhone2].filter(Boolean)
 
